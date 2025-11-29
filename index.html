@@ -4,44 +4,103 @@
   <meta charset="UTF-8">
   <title>Hursbourne Community</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body { font-family: Arial, sans-serif; background: #f9fafb; margin: 0; }
-    header { background: #3498db; color: #fff; padding: 32px 0; text-align: center; }
-    nav a { color: #fff; margin: 0 10px; text-decoration: none; font-weight: bold; }
-    main { background: #fff; margin: 32px auto; padding: 32px; max-width: 700px; border-radius: 8px; box-shadow: 0 2px 8px #d0d0d0; }
-    h2 { color: #3498db; }
-    footer { text-align: center; padding: 16px 0; background: #eee; color: #666; margin-top: 40px; }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="bg-gradient-overlay"></div>
   <header>
     <h1>Hursbourne Community</h1>
     <nav>
       <a href="#about">About</a>
       <a href="#events">Events</a>
+      <a href="#news">News</a>
+      <a href="#gallery">Gallery</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
+  <section class="hero">
+    <h2>Welcome to Hursbourne!</h2>
+    <p>Join our thriving, friendly community. Get involved, discover news and events, be a part of our future!</p>
+    <button class="cta-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});">Get Involved</button>
+  </section>
   <main>
     <section id="about">
       <h2>About Us</h2>
-      <p>Welcome to the Hursbourne Community website! Our community is dedicated to fostering a friendly and inclusive environment for everyone in Hursbourne.</p>
+      <p>Welcome to the Hursbourne Community website! Our community is dedicated to fostering a friendly and inclusive environment for everyone in Hursbourne.
+        <button id="readmoreBtn">Read more...</button>
+      </p>
+      <div id="readmoreContent" class="readmore-content">
+        <p>
+          <strong>Mission:</strong> To connect and empower every resident.<br>
+          <strong>History:</strong> Established in 1981, Hursbourne has grown from a small town into a vibrant hub.<br>
+          <strong>Leadership:</strong> Jane Doe (President), John Smith (Events Lead), Priya Patel (Volunteer Coordinator).
+        </p>
+      </div>
     </section>
     <section id="events">
       <h2>Community Events</h2>
-      <ul>
-        <li>Monthly Meet-up: First Saturday of each month</li>
-        <li>Community Cleanup: April 20, 2025</li>
-        <li>Summer Festival: July 15, 2025</li>
+      <div class="event-filter">
+        <button onclick="filterEvents('all')" id="filter-all" class="active">All</button>
+        <button onclick="filterEvents('social')" id="filter-social">Social</button>
+        <button onclick="filterEvents('volunteer')" id="filter-volunteer">Volunteer</button>
+        <button onclick="filterEvents('festival')" id="filter-festival">Festival</button>
+      </div>
+      <ul class="events-list">
+        <li data-type="social">Monthly Meet-up: First Saturday of each month <button>RSVP</button></li>
+        <li data-type="volunteer">Community Cleanup: April 20, 2025 <button>Sign Up</button></li>
+        <li data-type="festival">Summer Festival: July 15, 2025 <button>View Gallery</button></li>
       </ul>
+    </section>
+    <section id="news" class="news-section">
+      <h2>Latest News</h2>
+      <div class="news-card">
+        <h3>Hursbourne awarded Green Village Status!</h3>
+        <p>Our ongoing sustainability projects have brought new recognition to our town.</p>
+        <a href="#">Read full article</a>
+      </div>
+      <div class="news-card">
+        <h3>New Playground Opens</h3>
+        <p>The recently renovated park is now open to families and children.</p>
+        <a href="#">Read full article</a>
+      </div>
+    </section>
+    <section id="gallery" class="gallery-container">
+      <h2>Community Gallery</h2>
+      <div>
+        <button class="gallery-btn" onclick="galleryPrev()">&lt;</button>
+        <div class="gallery-carousel" id="galleryCarousel">
+          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=220&q=80" class="gallery-img" alt="Event 1">
+          <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=220&q=80" class="gallery-img" alt="Event 2">
+          <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=220&q=80" class="gallery-img" alt="Event 3">
+        </div>
+        <button class="gallery-btn" onclick="galleryNext()">&gt;</button>
+      </div>
     </section>
     <section id="contact">
       <h2>Contact Us</h2>
-      <p>Have questions or want to get involved? Email us at <a href="mailto:info@hursbourne.org">info@hursbourne.org</a></p>
+      <form class="contact-form" onsubmit="event.preventDefault(); alert('Message sent!');">
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="email" name="email" placeholder="Your email" required>
+        <textarea name="msg" rows="4" placeholder="Your message"></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+      <div class="map-container">
+        <!-- Simple map embed placeholder -->
+        <iframe src="https://maps.google.com/maps?q=Hursbourne&t=&z=13&ie=UTF8&iwloc=&output=embed" width="90%" height="200" frameborder="0" style="border-radius:8px;" allowfullscreen></iframe>
+      </div>
     </section>
   </main>
   <footer>
+    <div class="footer-social">
+      <a href="#"><svg viewBox="0 0 24 24"><path d="M22 5.924c-.793.352-1.647.591-2.543.698a4.493 4.493 0 0 0 1.973-2.481 8.997 8.997 0 0 1-2.853 1.088 4.482 4.482 0 0 0-7.64 4.085A12.726 12.726 0 0 1 3.15 4.693a4.48 4.48 0 0 0 1.385 5.976A4.47 4.47 0 0 1 2.77 9.74v.057a4.484 4.484 0 0 0 3.59 4.393 4.493 4.493 0 0 1-2.026.077 4.484 4.484 0 0 0 4.19 3.119 8.989 8.989 0 0 1-5.573 1.92A9.087 9.087 0 0 1 2 20.045 12.73 12.73 0 0 0 8.29 22c8.236 0 12.744-6.826 12.744-12.744 0-.194-.004-.388-.013-.58a9.127 9.127 0 0 0 2.245-2.352z"/></svg></a>
+      <a href="#"><svg viewBox="0 0 24 24"><path d="M12 2.163C6.514 2.163 2.163 6.514 2.163 12c0 4.827 3.657 8.834 8.362 9.681v-6.844h-2.507v-2.837h2.507v-2.167c0-2.497 1.492-3.876 3.778-3.876 1.095 0 2.239.195 2.239.195v2.47h-1.26c-1.244 0-1.632.772-1.632 1.562v1.816h2.773l-.444 2.837h-2.329V21.68c4.705-.847 8.362-4.854 8.362-9.68 0-5.486-4.351-9.837-9.837-9.837z"/></svg></a>
+    </div>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms</a>
+    </div>
     &copy; 2025 Hursbourne Community. All rights reserved.
   </footer>
+  <script src="script.js"></script>
 </body>
 </html>
